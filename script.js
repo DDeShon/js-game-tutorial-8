@@ -22,9 +22,12 @@ class Raven {
   }
 }
 
+const raven = new Raven();
+
 function animate(timestamp) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-
+  raven.update();
+  raven.draw();
   requestAnimationFrame(animate);
 }
 
