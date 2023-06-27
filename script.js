@@ -17,9 +17,13 @@ class Raven {
     this.y = Math.random() * (canvas.height - this.height);
     this.directionX = Math.random() * 5 + 3;
     this.directionY = Math.random() * 5 - 2.5;
+    this.markedForDeletion = false;
+    this.image = new Image();
+    this.image.src = "raven.png";
   }
   update() {
     this.x -= this.directionX;
+    if (this.x < 0 - this.width) this.markedForDeletion = true;
   }
   draw() {
     ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -37,6 +41,8 @@ function animate(timestamp) {
   }
   [...ravens].forEach((object) => object.update());
   [...ravens].forEach((object) => object.draw());
+  ravens = ravens.filter((object) => !object.markedForDeletion);
+  console.log(ravens);
 
   requestAnimationFrame(animate);
 }
