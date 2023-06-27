@@ -35,8 +35,10 @@ function animate(timestamp) {
     ravens.push(new Raven());
     timeToNextRaven = 0;
   }
+  [...ravens].forEach((object) => object.update());
+  [...ravens].forEach((object) => object.draw());
 
   requestAnimationFrame(animate);
 }
 
-animate();
+animate(0);
