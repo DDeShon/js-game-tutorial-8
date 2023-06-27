@@ -30,7 +30,12 @@ function animate(timestamp) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   let deltaTime = timestamp - lastTime;
   lastTime = timestamp;
-  console.log(timestamp);
+  timeToNextRaven += deltaTime;
+  if (timeToNextRaven > ravenInterval) {
+    ravens.push(new Raven());
+    timeToNextRaven = 0;
+  }
+
   requestAnimationFrame(animate);
 }
 
