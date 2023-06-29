@@ -39,7 +39,7 @@ class Raven {
     }
   }
   draw() {
-    ctx.strokeRect(this.x, this.y, this.width, this.height);
+    // ctx.strokeRect(this.x, this.y, this.width, this.height);
     ctx.drawImage(
       this.image,
       this.frame * this.spriteWidth,
