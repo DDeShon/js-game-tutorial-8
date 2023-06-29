@@ -100,6 +100,7 @@ class Explosion {
     this.timeSinceLastFrame += deltatime;
     if (this.timeSinceLastFrame > this.frameInterval) {
       this.frame++;
+      this.timeSinceLastFrame = 0;
       if (this.frame > 5) this.markedForDeletion = true;
     }
   }
@@ -111,7 +112,7 @@ class Explosion {
       this.spriteWidth,
       this.spriteHeight,
       this.x,
-      this.y,
+      this.y - this.size / 4,
       this.size,
       this.size
     );
