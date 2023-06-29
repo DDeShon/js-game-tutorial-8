@@ -6,7 +6,6 @@ canvas.height = window.innerHeight;
 let timeToNextRaven = 0;
 let ravenInterval = 500;
 let lastTime = 0;
-
 let ravens = [];
 
 class Raven {
@@ -30,6 +29,7 @@ class Raven {
   }
   update(deltaTime) {
     this.x -= this.directionX;
+    this.y += this.directionY;
     if (this.x < 0 - this.width) this.markedForDeletion = true;
     this.timeSinceFlap += deltaTime;
     if (this.timeSinceFlap > this.flapInterval) {
