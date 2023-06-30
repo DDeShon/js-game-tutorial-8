@@ -9,7 +9,7 @@ collisionCanvas.height = window.innerHeight;
 
 let score = 0;
 let gameOver = false;
-ctx.font = "50px Impact";
+ctx.font = "40px Impact";
 
 let timeToNextRaven = 0;
 let ravenInterval = 500;
@@ -128,6 +128,22 @@ function drawScore() {
   ctx.fillText("Score: " + score, 55, 80);
 }
 
+function drawGameOver() {
+  ctx.textAlign = "center";
+  ctx.fillStyle = "black";
+  ctx.fillText(
+    "GAME OVER, your score is " + score,
+    canvas.width / 2,
+    canvas.height / 2
+  );
+  ctx.fillStyle = "white";
+  ctx.fillText(
+    "GAME OVER, your score is " + score,
+    canvas.width / 2 + 5,
+    canvas.height / 2 + 5
+  );
+}
+
 window.addEventListener("click", function (e) {
   const detectPixelColor = collisionCtx.getImageData(e.x, e.y, 1, 1);
   console.log(detectPixelColor);
@@ -166,6 +182,7 @@ function animate(timestamp) {
   explosions = explosions.filter((object) => !object.markedForDeletion);
 
   if (!gameOver) requestAnimationFrame(animate);
+  else drawGameOver();
 }
 
 animate(0);
