@@ -60,6 +60,7 @@ class Raven {
       if (this.frame > this.maxFrame) this.frame = 0;
       else this.frame++;
       this.timeSinceFlap = 0;
+      particles.push(new Particle(this.x, this.y, this.width, this.color));
     }
     if (this.x < 0 - this.width) gameOver = true;
   }
@@ -126,6 +127,7 @@ class Particle {
   constructor(x, y, size, color) {
     this.x = x;
     this.y = y;
+    this.size = size;
     this.radius = (Math.random() * this.size) / 10;
     this.maxRadius = Math.random() * 20 + 35;
     this.markedForDeletion = false;
