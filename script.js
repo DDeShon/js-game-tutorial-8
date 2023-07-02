@@ -121,6 +121,19 @@ class Explosion {
   }
 }
 
+let particles = [];
+class Particle {
+  constructor(x, y, size, color) {
+    this.x = x;
+    this.y = y;
+    this.radius = (Math.random() * this.size) / 10;
+    this.maxRadius = Math.random() * 20 + 35;
+    this.markedForDeletion = false;
+    this.speedX = Math.random() * 1 + 0.5;
+    this.color = color;
+  }
+}
+
 function drawScore() {
   ctx.fillStyle = "black";
   ctx.fillText("Score: " + score, 50, 75);
