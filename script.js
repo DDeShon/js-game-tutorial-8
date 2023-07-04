@@ -47,6 +47,7 @@ class Raven {
       ", " +
       this.randomColors[2] +
       ")";
+    this.hasTrail = Math.random() > 0.5;
   }
   update(deltaTime) {
     if (this.y < 0 || this.y > canvas.height - this.height) {
@@ -60,7 +61,9 @@ class Raven {
       if (this.frame > this.maxFrame) this.frame = 0;
       else this.frame++;
       this.timeSinceFlap = 0;
-      particles.push(new Particle(this.x, this.y, this.width, this.color));
+      if (this.hasTrail) {
+        particles.push(new Particle(this.x, this.y, this.width, this.color));
+      }
     }
     if (this.x < 0 - this.width) gameOver = true;
   }
@@ -136,10 +139,11 @@ class Particle {
   }
   update() {
     this.x += this.speedX;
-    this.radius += 0.2;
+    this.radius += 0.5;
     if (this.radius > this.maxRadius) this.markedForDeletion = true;
   }
   draw() {
+    ctx.globalAlpha = 1;
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
