@@ -143,11 +143,13 @@ class Particle {
     if (this.radius > this.maxRadius) this.markedForDeletion = true;
   }
   draw() {
-    ctx.globalAlpha = 1;
+    ctx.save();
+    ctx.globalAlpha = 1 - this.radius / this.maxRadius;
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
     ctx.fill();
+    ctx.restore();
   }
 }
 
