@@ -62,7 +62,9 @@ class Raven {
       else this.frame++;
       this.timeSinceFlap = 0;
       if (this.hasTrail) {
-        particles.push(new Particle(this.x, this.y, this.width, this.color));
+        for (let i = 0; i < 5; i++) {
+          particles.push(new Particle(this.x, this.y, this.width, this.color));
+        }
       }
     }
     if (this.x < 0 - this.width) gameOver = true;
@@ -140,7 +142,7 @@ class Particle {
   update() {
     this.x += this.speedX;
     this.radius += 0.5;
-    if (this.radius > this.maxRadius) this.markedForDeletion = true;
+    if (this.radius > this.maxRadius - 5) this.markedForDeletion = true;
   }
   draw() {
     ctx.save();
